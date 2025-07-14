@@ -1,0 +1,12 @@
+.nav-link{
+    background-color:#F8E3C2 !important;
+    margin-right: 10px !important;
+    width: 8vw !important;
+    text-align: center !important;
+    transition: all .3s !important;
+    font-weight: bold !important;
+}
+
+.nav-link:hover{
+    background-color: #f3cd92 !important;
+}
