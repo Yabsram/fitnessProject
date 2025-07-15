@@ -55,16 +55,15 @@ def register():
 
 @app.route('/workouts', methods=['GET', 'POST'])
 def workouts():
-    workout_plan = None          # default
+    workout_plan = None        
     if request.method == "POST":
-        # grab form data
+
         height = request.form['height']
         weight = request.form['weight']
         goal   = request.form['goal']
         age    = request.form.get('age')
         gender = request.form.get('gender')
 
-        # call Gemini
         workout_plan = genai_fitness_plan(height, weight, goal, age, gender)
 
     return render_template("workouts.html", workout_plan=workout_plan)

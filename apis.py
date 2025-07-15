@@ -39,11 +39,11 @@ def genai_fitness_plan(height, weight, goal, age=None, gender=None):
 
 
 
-# print(genai_fitness_plan(
-#     height="5'8",
-#     weight=160,
-#     goal="Gain weight",
-#     age=22,
-#     gender="female"
-# ))
+print(genai_fitness_plan(
+    height="5'8",
+    weight=160,
+    goal="Gain weight",
+    age=22,
+    gender="female"
+))
 
