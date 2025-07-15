@@ -6,6 +6,10 @@ h1{
     text-align:left;
 }
 
+p{
+    text-align: left;
+}
+
 .nav-link{
     background-color:#F8E3C2 !important;
     margin-right: 30px !important;
@@ -36,7 +40,34 @@ h1{
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-  width: 90%;
+  width: 95%;
   height: 90vh;
   text-align: center;
+}
+
+.mixed-row{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 95%;
+    align-items: center;
+}
+
+.side-image {
+  width: 50%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.text{
+    flex: 1;
+}
+
+.two-box-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  width: 95%;
+  justify-content: center;
 }
