@@ -2,10 +2,20 @@
 
 {% block content %}
 <div class="page-wrapper">
+
   <div class="white-box">
-    <h1>Welcome to Project</h1>
-    <p>Text text text text</p>
+    <h1>HOME</h1>
+
+    <div class="mixed-row">
+      <div class="text">
+        <p>Text text text text</p>
+      </div>
+
+      <img src="{{ url_for('static', filename='images/homeimage.jpg') }}" alt="Image of sneakers, headphones, and dumbbells." class="side-image">
+    </div>
+
   </div>
+
 </div>
     
 {% endblock content %}
