@@ -37,16 +37,16 @@ def register():
     if form.validate_on_submit():
         try:
             user_exists = User.query.filter_by(username=form.username.data).first()
-            email_exists = User.query.filter_by(username=form.email.data).first()
+            email_exists = User.query.filter_by(email=form.email.data).first()
             if user_exists:
                 raise ValueError("User already exsists")
             if email_exists:
-                raise ValueErro("Email already in use")
+                raise ValueError("Email already in use")
             user = User(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data))
             db.session.add(user)
             db.session.commit()
             flash(f'Account created for {form.username.data}!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('workouts'))
         except Exception as e:
             message = f'An error has occured: {e}'
             return render_template("register.html", form=form, message=message)
