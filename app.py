@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationForm
 from werkzeug.security import generate_password_hash
+from apis import genai_fitness_plan
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_KEY")
@@ -41,7 +42,7 @@ def register():
             if user_exists:
                 raise ValueError("User already exsists")
             if email_exists:
-                raise ValueErro("Email already in use")
+                raise ValueError("Email already in use")
             user = User(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data))
             db.session.add(user)
             db.session.commit()
@@ -52,9 +53,21 @@ def register():
             return render_template("register.html", form=form, message=message)
     return render_template("register.html", form=form)
 
-@app.route('/workouts')
+@app.route('/workouts', methods=['GET', 'POST'])
 def workouts():
-    return render_template("workouts.html")
+    workout_plan = None          # default
+    if request.method == "POST":
+        # grab form data
+        height = request.form['height']
+        weight = request.form['weight']
+        goal   = request.form['goal']
+        age    = request.form.get('age')
+        gender = request.form.get('gender')
+
+        # call Gemini
+        workout_plan = genai_fitness_plan(height, weight, goal, age, gender)
+
+    return render_template("workouts.html", workout_plan=workout_plan)
 
 @app.route('/recipes')
 def recipes():
@@ -62,4 +75,4 @@ def recipes():
 
 
 if __name__ == '__main__':
-        app.run(debug=True, host="0.0.0.0")
+        app.run(debug=True, host="0.0.0.0",port=5001)
