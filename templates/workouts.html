@@ -7,43 +7,78 @@
   <div class="two-box-row">
 
     <div class="white-box">
-  <h4>Enter Your Info</h4>
-  <form method="POST">
-    <div class="form-group">
-      <label for="height">Height:</label>
-      <input type="text" class="form-control" name="height" required>
+      <h4>Enter Your Info</h4>
+      <form method="POST">
+        <div class="form-group">
+          <label for="height">Height:</label>
+          <input type="text" class="form-control" name="height" required>
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight (lbs):</label>
+          <input type="number" class="form-control" name="weight" required>
+        </div>
+        <div class="form-group">
+          <label for="goal">Goal:</label>
+          <input type="text" class="form-control" name="goal" required>
+        </div>
+        <div class="form-group">
+          <label for="age">Age (optional):</label>
+          <input type="number" class="form-control" name="age">
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender (optional):</label>
+          <input type="text" class="form-control" name="gender">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Generate Plan</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="weight">Weight (lbs):</label>
-      <input type="number" class="form-control" name="weight" required>
-    </div>
-    <div class="form-group">
-      <label for="goal">Goal:</label>
-      <input type="text" class="form-control" name="goal" required>
-    </div>
-    <div class="form-group">
-      <label for="age">Age (optional):</label>
-      <input type="number" class="form-control" name="age">
-    </div>
-    <div class="form-group">
-      <label for="gender">Gender (optional):</label>
-      <input type="text" class="form-control" name="gender">
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Generate Plan</button>
-  </form>
-</div>
 
-<div class="white-box">
-  {% if workout_plan %}
-    <h4>Personalized Fitness Plan:</h4>
-    <pre style="white-space: pre-wrap;">{{ workout_plan }}</pre>
-  {% else %}
-    <p>Fill out the form to generate a personalized fitness plan.</p>
-  {% endif %}
-</div>
+    <div class="white-box">
+      {% if workout_plan %}
+        <div class="formatted-plan p-4 bg-light border rounded shadow-sm">
+          {{ workout_plan | safe }}
+        </div>
+
+        {% if image_links %}
+          <div class="mt-4">
+            <h5>Exercise Images</h5>
+            <div class="row">
+              {% for name, img_url in image_links %}
+                <div class="col-md-4 text-center mb-3">
+                  <h6>{{ name.title() }}</h6>
+                  <img src="{{ img_url }}" alt="{{ name }}" class="img-fluid rounded">
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% else %}
+        <p class="text-muted">Enter your fitness info to generate a workout plan.</p>
+      {% endif %}
+
+      <style>
+        .formatted-plan h2, .formatted-plan h3, .formatted-plan strong {
+          margin-top: 1rem;
+          font-weight: 600;
+        }
+
+        .formatted-plan a {
+          color: #0d6efd;
+          text-decoration: underline;
+        }
+
+        .formatted-plan ul {
+          padding-left: 1.5rem;
+        }
+
+        .formatted-plan {
+          white-space: pre-wrap; /* Preserves newlines if needed */
+        }
+      </style>
+    </div>
 
   </div>
 
 </div>
-  
+
 {% endblock content %}

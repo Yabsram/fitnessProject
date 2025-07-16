@@ -79,7 +79,8 @@ def register():
 @app.route('/workouts', methods=['GET', 'POST'])
 @login_required
 def workouts():
-    workout_plan = None        
+    workout_plan = None
+    image_link = []        
     if request.method == "POST":
 
         height = request.form['height']
@@ -88,9 +89,11 @@ def workouts():
         age    = request.form.get('age')
         gender = request.form.get('gender')
 
-        workout_plan = genai_fitness_plan(height, weight, goal, age, gender)
+        result = genai_fitness_plan(height, weight, goal, age, gender)
+        workout_plan = result["plan"]
+        image_link = result["images"]
 
-    return render_template("workouts.html", workout_plan=workout_plan)
+    return render_template("workouts.html", workout_plan=workout_plan, image_link=image_link)
 
 @app.route('/recipes')
 @login_required
@@ -105,4 +108,4 @@ def logout():
 
 
 if __name__ == '__main__':
-        app.run(debug=True, host="0.0.0.0",port=5001)
+        app.run(debug=True, host="0.0.0.0",port=5002)
