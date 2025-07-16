@@ -20,3 +20,6 @@ jobs:
 
       - name: Test registration form
         run: python3 tests/test_users.py
+
+      - name: Test api calls
+        run: python3 tests/test_apis.py
