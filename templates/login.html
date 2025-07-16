@@ -6,6 +6,17 @@
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
                 <legend class="mb-2 mt-4">Login</legend>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <div class=" fs-10 text-success">{{success_message}}</div>
                 <div class=" fs-10 text-danger">{{message}}</div>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }} {% if
@@ -38,7 +49,8 @@
             </form>
         </div>
         <div class="col d-flex" style="align-items: flex-end; justify-content: center;">
-            <div class="rounded" style=" height: 50vh; width: 50vh; background-color: #353535; margin-bottom: 20px; margin-top: 20px;">
+            <div class="rounded"
+                style=" height: 50vh; width: 50vh; background-color: #353535; margin-bottom: 20px; margin-top: 20px;">
             </div>
         </div>
     </div>

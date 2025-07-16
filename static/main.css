@@ -41,7 +41,7 @@ p{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 95%;
-  height: 90vh;
+  height: auto;
   text-align: center;
 }
 

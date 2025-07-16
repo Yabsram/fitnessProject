@@ -4,14 +4,20 @@ from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationForm
 from werkzeug.security import generate_password_hash
 from apis import genai_fitness_plan
+from forms import RegistrationForm, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import (LoginManager, UserMixin, login_user, logout_user, login_required, current_user)
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_KEY")
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(20), unique=True, nullable=False)
   email = db.Column(db.String(120), unique=True, nullable=False)
@@ -23,14 +29,31 @@ class User(db.Model):
 with app.app_context():
   db.create_all()
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template("home.html")
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    form = LoginForm()
+    if form.validate_on_submit():
+        try:
+            user = User.query.filter_by(email=form.email.data).first()
+            password = form.password.data
+            if user and check_password_hash(user.password, password):
+                login_user(user)
+                return redirect(url_for('workouts'))
+            else:
+                raise ValueError("Invalid Email/Password")
+        except Exception as e:
+            return render_template('login.html', form=form, message=e)
+    return render_template('login.html', form=form)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -47,13 +70,14 @@ def register():
             db.session.add(user)
             db.session.commit()
             flash(f'Account created for {form.username.data}!', 'success')
-            return redirect(url_for('workouts'))
+            return redirect(url_for('login'))
         except Exception as e:
             message = f'An error has occured: {e}'
             return render_template("register.html", form=form, message=message)
     return render_template("register.html", form=form)
 
 @app.route('/workouts', methods=['GET', 'POST'])
+@login_required
 def workouts():
     workout_plan = None        
     if request.method == "POST":
@@ -69,8 +93,15 @@ def workouts():
     return render_template("workouts.html", workout_plan=workout_plan)
 
 @app.route('/recipes')
+@login_required
 def recipes():
     return render_template("recipes.html")
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
