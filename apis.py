@@ -17,22 +17,35 @@ def genai_fitness_plan(height, weight, goal, age=None, gender=None):
             user_desc += f", {gender}"
 
         prompt = (
-            "You are a certified fitness coach who creates motivating, beginner friendly workout plans "
-            "based on people's body stats and fitness goals. Avoid jargon.\n\n"
-            f"Create a simple 1-week beginner workout plan for {user_desc}. "
-            f"Their goal is to {goal}. "
-            "Include 5 workout days and 2 rest days. "
-            "Each exercise should be clearly named.\n"
+    "You are a certified fitness coach and skilled web formatter. "
+    "Generate a 1-week beginner-friendly workout plan based on the user's fitness stats and goal. "
+    "Avoid technical jargon and use clear, motivating language.\n\n"
+
+    f"User profile: {user_desc}. Their fitness goal is to {goal}.\n\n"
+
+    "Format the output as clean HTML with the following structure:\n"
+    "1. Title: Use <h2><strong>Your 1-Week " + goal.capitalize() + " Workout Plan</strong></h2>\n"
+    "2. Add a short introductory paragraph.\n"
+    "3. For each day (Day 1 to Day 7), use <h3>Day X - [Workout Focus]</h3>\n"
+    "4. Under each day, list exercises as HTML <ul> elements:\n"
+    "   - Exercise name in <strong>\n"
+    "   - 1-2 sentence description\n"
+    "   - Add a YouTube search link in this format:\n"
+    "     <a href=\"https://www.youtube.com/results?search_query=how+to+[exercise name]\" target=\"_blank\">Watch tutorial</a>\n"
+    "5. Add a rest day note for appropriate days (like Day 4).\n"
+    "6. End with a motivational tip.\n\n"
+
+    "Make the HTML clean and mobile-friendly. Do not include <html>, <head>, or <body> tags—just content ready for insertion in a template."
         )
 
         model = genai.GenerativeModel("gemini-1.5-flash")
         response = model.generate_content(prompt)
-        text = response.text
+        text = response.text.lower()
 
 
         used_exercises = []
         for key in exercise_images:
-            if key.lower() in text.lower():
+            if key in text:
                 used_exercises.append((key, exercise_images[key]))
 
         return {"plan": text, "images": used_exercises}
