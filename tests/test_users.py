@@ -34,8 +34,12 @@ class UsersTests(unittest.TestCase):
         self.assertIn(b'Field must be between 2 and 20 characters long.', response.data)
 
     def test_invalid_email_registration(self):
-        response = self.register('valid_user', 'invalid@example', 'IDK')
+        response = self.register('valid_user', 'invalid@example', 'SecurePassword')
         self.assertIn(b'Invalid email address.', response.data)
+
+    def test_invalid_password_registration(self):
+        response = self.register('valid_user', 'valid@example.com', 'No')
+        self.assertIn(b'Field must be at least 8 characters long.', response.data)
 
 
 if __name__ == "__main__":
