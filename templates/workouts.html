@@ -6,6 +6,7 @@
 
   <div class="two-box-row">
 
+    <!-- Left Box: Form -->
     <div class="white-box">
       <h4>Enter Your Info</h4>
       <form method="POST">
@@ -33,6 +34,7 @@
       </form>
     </div>
 
+    <!-- Right Box: Output -->
     <div class="white-box">
       {% if workout_plan %}
         <div class="formatted-plan p-4 bg-light border rounded shadow-sm">
@@ -72,7 +74,7 @@
         }
 
         .formatted-plan {
-          white-space: pre-wrap; /* Preserves newlines if needed */
+          white-space: pre-wrap;
         }
       </style>
     </div>

@@ -6,12 +6,21 @@ h1{
     text-align:left;
 }
 
+h6{
+    text-align: left;
+}
+
 p{
     text-align: left;
 }
 
+.navbar{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
 .nav-link{
-    background-color:#F8E3C2 !important;
     margin-right: 30px !important;
     width: 8vw !important;
     text-align: center !important;
@@ -28,6 +37,7 @@ p{
 }
 
 .page-wrapper {
+  background-color: #FFFFFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,13 +45,13 @@ p{
   min-height: 100vh;
 }
 
-.white-box {
-  background-color: white;
+.creme-box {
+  background-color: #F8E3C2;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 95%;
-  height: auto;
+  height: 90vh;
   text-align: center;
 }
 
@@ -51,6 +61,29 @@ p{
     justify-content: space-between;
     width: 95%;
     align-items: center;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10rem;                   
+  flex-wrap: wrap;            
+}
+
+.text-row {
+  display: flex;
+  justify-content: space-evenly;   
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.text-row p {
+  flex: 1;
+  max-width: 45%;
+  text-align: left;
+  line-height: 1.6;
 }
 
 .side-image {
