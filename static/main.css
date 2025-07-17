@@ -48,6 +48,17 @@ p{
     background-color: #D9D9D9 !important;
 }
 
+.footer-box{
+  background-color: #F8E3C2 !important;
+  bottom: 0;
+  left: 0;
+  width: 100% !important;
+  text-align: right;
+  padding: 1rem;
+  font-size: 0.6rem;
+  z-index: 100;
+}
+
 .page-wrapper {
     background-color: #FFFFFF;
     padding: 2rem;
