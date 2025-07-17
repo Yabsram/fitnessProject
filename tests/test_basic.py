@@ -7,7 +7,6 @@ class BasicTests(unittest.TestCase):
 
     # executed prior to each test
     def setUp(self):
-        app.config['TESTING'] = True
         app.config['SECRET_KEY'] = 'test-secret'
         self.app = app.test_client()
 
