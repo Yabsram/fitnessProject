@@ -12,7 +12,7 @@
 <body style="background-color: #EBEBEB;">
     <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #FFFFFF">
         <div class="container-fluid" style="color:#7F9172">
-            <h2>PROJECT NAME</h2>
+            <h2>FIT4U</h2>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,12 @@
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/">Home</a></div>
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/workouts">Workouts</a></div>
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/recipes">Recipes</a></div>
-                    <div class="nav-link-container"><a class="nav-link fs-5" href="{{ page }}">{{ status }}</a></div>
                     {% if not current_user.is_authenticated %}
+                    <div class="nav-link-container"><a class="nav-link fs-5" href="/login">Login</a></div>
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/register">Register</a></div>
-                    {% endif %}               
+                    {% else %}
+                    <div class="nav-link-container"><a class="nav-link fs-5" href="/logout">Logout</a></div>
+                    {% endif %}              
                 </div>
             </div>
         </div>

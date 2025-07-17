@@ -36,7 +36,7 @@ def load_user(user_id):
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("home.html", status="Login", page="/login")
+    return render_template("home.html")
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -51,8 +51,8 @@ def login():
             else:
                 raise ValueError("Invalid Email/Password")
         except Exception as e:
-            return render_template('login.html', form=form, message=e, status="Login", page="/login")
-    return render_template('login.html', form=form, status="Login", page="/login")
+            return render_template('login.html', form=form, message=e)
+    return render_template('login.html', form=form)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -73,8 +73,8 @@ def register():
             return redirect(url_for('login'))
         except Exception as e:
             message = f'An error has occured: {e}'
-            return render_template("register.html", form=form, message=message, status="Login", page="/login")
-    return render_template("register.html", form=form, status="Login", page="/login")
+            return render_template("register.html", form=form, message=message)
+    return render_template("register.html", form=form)
 
 @app.route('/workouts', methods=['GET', 'POST'])
 @login_required
@@ -98,7 +98,7 @@ def workouts():
 @app.route('/recipes')
 @login_required
 def recipes():
-    return render_template("recipes.html", status="Logout", page="/logout")
+    return render_template("recipes.html")
 
 @app.route('/logout')
 @login_required

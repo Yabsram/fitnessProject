@@ -35,7 +35,7 @@ def genai_fitness_plan(height, weight, goal, age=None, gender=None):
     "5. Add a rest day note for appropriate days (like Day 4).\n"
     "6. End with a motivational tip.\n\n"
 
-    "Make the HTML clean and mobile-friendly. Do not include <html>, <head>, or <body> tags—just content ready for insertion in a template."
+    "Make the HTML clean and mobile-friendly. Do not include <html>, <head>, any words that say html, or <body> tags—just content ready for insertion in a template."
         )
 
         model = genai.GenerativeModel("gemini-1.5-flash")
