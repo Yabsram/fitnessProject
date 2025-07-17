@@ -18,6 +18,7 @@ p{
     text-align: start;
 }
 
+
 .navbar{
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
@@ -33,6 +34,12 @@ p{
     font-weight: bold !important;
 }
 
+.navbar .nav-link {
+    color: #4F3422 !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .nav-link:hover{
     background-color: #f3cd92 !important;
 }
@@ -42,8 +49,8 @@ p{
 }
 
 .page-wrapper {
-  background-color: #FFFFFF;
-  padding: 2rem;
+    background-color: #FFFFFF;
+    padding: 2rem;
 }
 
 .creme-box {
@@ -83,38 +90,38 @@ p{
 }
 
 .link-box {
-  text-decoration: none;
-  color: inherit; 
-  display: inline-block;
-  position: relative;
-  width: 48%;
+    text-decoration: none;
+    color: inherit; 
+    display: inline-block;
+    position: relative;
+    width: 48%;
 }
 
 .hover-overlay {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .hover-overlay::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color 0.3s ease;
-  z-index: 2;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
+    z-index: 2;
 }
 
 .link-box:hover .hover-overlay::after {
-  background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .hover-overlay > * {
-  position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
 }
 
 .image-row {
@@ -136,8 +143,8 @@ p{
 }
 
 .header-row h2 {
-  margin: 0;
-  white-space: nowrap;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .text-row {
@@ -179,106 +186,99 @@ p{
 }
 
 .two-box-row {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 95%;
-  margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .getstarted{
-  padding-top: 5rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
 }
 
 .steps-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 3rem auto;
-  width: 95%;
-  max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 3rem auto;
+    width: 95%;
+    max-width: 1000px;
 }
 
 .step {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  
-  gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
 .step-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .circle {
-  width: 175px;
-  height: 175px;
-  background-color: #7F9172;
-  color: white;
-  border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  z-index: 1;
+    width: 175px;
+    height: 175px;
+    background-color: #7F9172;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    z-index: 1;
+    align-self: center;
 }
 
 .line {
-  width: 1px;
-  height: 200px;
-  background-color: #000000;
-  margin-top: 4px;
+    width: 1px;
+    height: 250px;
+    background-color: #000000;
+    margin-top: 0px;
 }
 
 .step-content {
-  display: flex;
-  align-items: flex-start;
-  flex: 1;
-  padding-left: 3.5rem;
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    padding-left: 3.5rem;
 }
 
-.step-content h3 {
-  margin: 0;
-}
 
 .step-content img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  margin-top: 0.5rem;
-  border-radius: 6px;
-  padding-right: 3.5rem;
-  
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    margin-right: 3.5rem;
 }
 
 .steps-text{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content:;
 }
 
 .step-description {
-  width: 80%;
-  max-width: 300px;
-  margin-top: 0.5rem;
-  border-radius: 12px;
+    width: 80%;
+    max-width: 300px;
+    margin-top: 0.5rem;
+    border-radius: 12px;
 }
 
 .form-check{
-  justify-content: left !important;
-  display: flex !important;
-  gap: 10px;
+    justify-content: left !important;
+    display: flex !important;
+    gap: 10px;
 }
