@@ -98,7 +98,7 @@ def recipes():
     diets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian"]
     intolreances = ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"]
     if request.method == "POST":
-        params = {"apiKey":"2d04e78ae12a4a59a1cea2f09f7f3c3e", "query" : request.form["food"] ,"diet" : request.form.get("diet", "Whole30"), "intolerances":request.form.getlist('intolerances')}
+        params = {"apiKey": os.getenv("SPOONACULAR_KEY"), "query" : request.form["food"] ,"diet" : request.form.get("diet", "Whole30"), "intolerances":request.form.getlist('intolerances')}
         recipes = get_recipes("https://api.spoonacular.com/recipes/complexSearch", params)
         return render_template("recipes.html", diets=diets, intolerances=intolreances, recipes=recipes)
     return render_template("recipes.html", diets=diets, intolerances=intolreances)
