@@ -59,11 +59,21 @@ p{
     text-align: center;
 }
 
+.two-creme-box {
+    background-color: #F8E3C2;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 39%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
 .white-box {
     background-color: #FFFFFF;
     border-radius: 16px;
     padding: 2rem;
-    width: 47%;
+    width: 52%;
     margin: 1rem auto;
     text-align: center;
 
@@ -208,4 +218,10 @@ p{
   height: auto;
   margin-top: 0.5rem;
   border-radius: 12px;
+}
+
+.form-check{
+  justify-content: left !important;
+  display: flex !important;
+  gap: 10px;
 }

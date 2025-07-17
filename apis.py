@@ -1,6 +1,7 @@
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
+import requests
 load_dotenv()
 
 
@@ -74,4 +75,10 @@ def genai_fitness_plan(height, weight, goal, age=None, gender=None):
 #     age=22,
 #     gender="female"
 # ))
+
+
+
+def get_recipes(url, params):
+    response = requests.get(url,params=params)
+    return response.json()
 
