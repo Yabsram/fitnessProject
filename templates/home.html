@@ -1,96 +1,92 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <div class="page-wrapper">
 
   <div class="creme-box">
-    <h1>WELCOME TO FIT4U</h1>
+    <h1><strong>WELCOME TO FIT4U</strong></h1>
     <p> <strong>Your fitness. Your way.</strong></p>
   
     <div class="two-box-row">
-      <div class="white-box">
-        <h2>Workout Plan</h2>
-        <p>Personalized routines based on your fitness goals.</p>
-        <img src="{{ url_for('static', filename='images/girlcrunches.png') }}" 
-            alt="Image of a girl doing crunches." class="fitgirl">
-      </div>
+      <a href="{{ url_for('workouts') }}" class="link-box">
+        <div class="white-box hover-overlay">
+          <h2>Workout Plans</h2>
+          <p>Personalized routines based on your fitness goals.</p>
+          <img src="{{ url_for('static', filename='images/girlcrunches.png') }}" 
+              alt="Image of a girl doing crunches." class="fitgirl">
+        </div>
+      </a>
 
-      <div class="white-box">
-        <h2>Meal Suggestions</h2>
-        <p>Recipes matched to your nutrient needs.</p>
-        <img src="{{ url_for('static', filename='images/healthyfood.png') }}" 
-            alt="Image of a salad." class="healthyfood">
-      </div>
+      <a href="{{ url_for('recipes') }}" class="link-box">
+        <div class="white-box hover-overlay">
+          <h2>Meal Suggestions</h2>
+          <p>Recipes matched to your nutrient needs.</p>
+          <img src="{{ url_for('static', filename='images/healthyfood.png') }}" 
+              alt="Image of a salad." class="healthyfood">
+        </div>
+      </a>
     </div>
-
+  </div>
+  
   <h1 class="getstarted">5 STEPS TO GET STARTED</h1>
+<div class="steps-container">
+      <div class="step">
+        <div class="step-marker">
+          <div class="circle">1</div>
+          <div class="line"></div>
+        </div>
+        <div class="step-content">
+          <img src="{{ url_for('static', filename='images/login.png') }}" alt="Image of woman on a laptop.">
+          <div class="step-text">
+            <h3>Login or Create an Account</h3>
+            <p class="step-description">Start by registering for a free Fit4U account or logging into your existing one.</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="steps-container">
-  <div class="step">
-    <div class="step-marker">
-      <div class="circle">1</div>
-      <div class="line"></div>
-    </div>
-    <div class="step-content">
-      <h3>Login or Create an Account</h3>
-      <img src="{{ url_for('static', filename='images/goal.png') }}" alt="Choose goal image">
-      <p>Start by registering for a free Fit4U account or logging into your existing one.</p>
-    </div>
-  </div>
+      <div class="step">
+        <div class="step-marker">
+          <div class="circle">2</div>
+          <div class="line"></div>
+        </div>
+        <div class="step-content">
+          <img src="{{ url_for('static', filename='images/fitplan.png') }}" alt="Image of a fitness plan.">
+          <div class="step-text">
+            <h3>Choose Your Goal </h3>
+            <p class="step-description">Enter a few basics on the workouts page like your height, weight, and fitness goals and get your AI-powered workout routine created just for you.</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="step">
-    <div class="step-marker">
-      <div class="circle">2</div>
-      <div class="line"></div>
-    </div>
-    <div class="step-content">
-      <h3>Choose Your Goal </h3>
-      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
-      <p>Enter a few basics on the workouts page like your height, weight, and fitness goals.</p>
-    </div>
-  </div>
+        <div class="step">
+        <div class="step-marker">
+          <div class="circle">3</div>
+          <div class="line"></div>
+        </div>
+        <div class="step-content">
+          <img src="{{ url_for('static', filename='images/cookinghealthy.png') }}" alt="Image of a woman cooking.">
+          <div class="step-text">
+            <h3>Get Recipe Suggestions</h3>
+            <p class="step-description">Enter any dietary restrictions and available ingredients and Fit4U will provide you with recipes that support your workout goals</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="step">
-    <div class="step-marker">
-      <div class="circle">3</div>
-      <div class="line"></div>
+      <div class="step">
+        <div class="step-marker">
+          <div class="circle">4</div>
+        </div>
+        <div class="step-content">
+          <img src="{{ url_for('static', filename='images/focusedfit.png') }}" alt="Image of a man running.">
+          <div class="step-text">
+            <h3>Stay Active and Focused</h3>
+            <p class="step-description">Access your workout plan or recipes at anytime, and stay consistent towards your goals.</p>
+          </div>
+        </div>
     </div>
-    <div class="step-content">
-      <h3>Get Workout Plan</h3>
-      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
-      <p>Get your AI-powered workout routine created just for you.</p>
-    </div>
-  </div>
-
-    <div class="step">
-    <div class="step-marker">
-      <div class="circle">4</div>
-      <div class="line"></div>
-    </div>
-    <div class="step-content">
-      <h3>Get Recipe Suggestions</h3>
-      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
-      <p>Enter any dietary restrictions and available ingredients and Fit4U will provide you with recipes that support your workout goals</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-marker">
-      <div class="circle">5</div>
-      <!-- No line on the last one -->
-    </div>
-    <div class="step-content">
-      <h3>Stay Active and Focused</h3>
-      <img src="{{ url_for('static', filename='images/recipe.png') }}" alt="Recipe image">
-      <p>Access your workout plan or recipes at anytime, and stay consistent towards your goals.</p>
-    </div>
-  </div>
 </div>
 
 
-
-  </div>
-
-</div>
     
 {% endblock content %}

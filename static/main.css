@@ -43,9 +43,6 @@ p{
 
 .page-wrapper {
   background-color: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 2rem;
 }
 
@@ -73,7 +70,7 @@ p{
     background-color: #FFFFFF;
     border-radius: 16px;
     padding: 2rem;
-    width: 47%;
+    width: 100%;
     margin: 1rem auto;
     text-align: center;
 
@@ -83,6 +80,41 @@ p{
     gap: 1rem;
     box-sizing: border-box;
     align-items: center;
+}
+
+.link-box {
+  text-decoration: none;
+  color: inherit; 
+  display: inline-block;
+  position: relative;
+  width: 48%;
+}
+
+.hover-overlay {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.hover-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
+  z-index: 2;
+}
+
+.link-box:hover .hover-overlay::after {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hover-overlay > * {
+  position: relative;
+  z-index: 3;
 }
 
 .image-row {
@@ -127,7 +159,7 @@ p{
 }
 
 .healthyfood{
-    width: 40%;
+    width: 35%;
     height: auto;
     border-radius: 8px;
     flex-shrink: 0;
@@ -150,7 +182,7 @@ p{
   display: flex;
   gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap;   
+  flex-wrap: wrap;
   width: 95%;
   margin: 0 auto;
 }
@@ -173,7 +205,8 @@ p{
 .step {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  
   gap: 2rem;
 }
 
@@ -181,11 +214,13 @@ p{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 .circle {
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
   background-color: #7F9172;
   color: white;
   border-radius: 50%;
@@ -205,7 +240,10 @@ p{
 }
 
 .step-content {
+  display: flex;
+  align-items: flex-start;
   flex: 1;
+  padding-left: 3.5rem;
 }
 
 .step-content h3 {
@@ -217,5 +255,23 @@ p{
   max-width: 300px;
   height: auto;
   margin-top: 0.5rem;
-  border-radius: 12px;
+  border-radius: 6px;
+  padding-right: 3.5rem;
+  
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.steps-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.step-description {
+  width: 80%;
+  max-width: 300px;
+  margin-top: 0.5rem;
 }
