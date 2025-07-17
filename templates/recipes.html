@@ -6,16 +6,68 @@
 
   <div class="two-box-row">
 
-    <div class="two-creme-box">
-      <p>User dietary info here</p>
+    <div class="creme-box">
+      <h4>Enter Additional Info</h4>
+      <form method="POST">
+        <div class="form-group">
+          <label class="fs-5" for="height">Food type (e.g. pasta):</label>
+          <input type="text" class="form-control" name="food" style="background-color: white !important;" required>
+        </div>
+        <div class="form-group mt-2">
+          <label class="fs-5" for="diet">Dietary Restrictions</label>
+          <select class="form-select" aria-label="Default select" name="diet">
+            <option selected>Select dietary restriction (Optional)</option>
+            {% for diet in diets %}
+            <option value="{{diet}}">{{diet}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group mt-2">
+          <label class="fs-5" for="intolerances">Intolerances</label>
+          <div class="row">
+            {% for intolerance in intolerances %}
+            <div class="col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="{{ intolerance }}"
+                  id="{{ intolerance }}">
+                <label class="form-check-label" for="{{ intolerance }}">
+                  {{ intolerance }}
+                </label>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Generate Recipes</button>
+      </form>
     </div>
-
-    <div class="two-creme-box">
-      <p>Spoonacular Results here</p>
+    <div class="creme-box">
+      {% if recipes and recipes.results %}
+      <h4>Personalized Healthy Meal Suggestions</h4>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for recipe in recipes.results %}
+          <form action="{{ url_for('recipeurl') }}" method="post" target="_blank">
+            <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+            <div class="col" onclick="this.closest('form').submit()" style="cursor: pointer;">
+              <div class="card h-100">
+                <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ recipe.title }}</h5>
+                </div>
+              </div>
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+        {% elif recipes and not recipes.results %}
+        <p class="text-danger">Coud not generate any meal plans. Please check that the food type is correctly spelled.
+        </p>
+        {% else %}
+        <p>Get your personalized meal.</p>
+        {% endif %}
+      </div>
     </div>
-
   </div>
-
 </div>
-  
 {% endblock content %}
