@@ -10,11 +10,11 @@
       <h4>Enter Additional Info</h4>
       <form method="POST">
         <div class="form-group">
-          <label for="height">Food type (e.g. pasta):</label>
+          <label class="fs-5" for="height">Food type (e.g. pasta):</label>
           <input type="text" class="form-control" name="food" style="background-color: white !important;" required>
         </div>
-        <div class="form-group mt-5">
-          <label for="diet">Dietary Restrictions</label>
+        <div class="form-group mt-2">
+          <label class="fs-5" for="diet">Dietary Restrictions</label>
           <select class="form-select" aria-label="Default select" name="diet">
             <option selected>Select dietary restriction (Optional)</option>
             {% for diet in diets %}
@@ -23,7 +23,7 @@
           </select>
         </div>
         <div class="form-group mt-2">
-          <label for="intolerances">Intolerances</label>
+          <label class="fs-5" for="intolerances">Intolerances</label>
           <div class="row">
             {% for intolerance in intolerances %}
             <div class="col-md-4">
@@ -42,23 +42,27 @@
       </form>
     </div>
     <div class="creme-box">
-      {% if recipes.results %}
+      {% if recipes and recipes.results %}
       <h4>Personalized Healthy Meal Suggestions</h4>
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           {% for recipe in recipes.results %}
-          <div class="col">
-            <div class="card h-100">
-              <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
-              <div class="card-body">
-                <h5 class="card-title">{{ recipe.title }}</h5>
+          <form action="{{ url_for('recipeurl') }}" method="post" target="_blank">
+            <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+            <div class="col" onclick="this.closest('form').submit()" style="cursor: pointer;">
+              <div class="card h-100">
+                <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ recipe.title }}</h5>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
           {% endfor %}
         </div>
         {% elif recipes and not recipes.results %}
-        <p class="text-danger">Coud not generate any meal plans.</p>
+        <p class="text-danger">Coud not generate any meal plans. Please check that the food type is correctly spelled.
+        </p>
         {% else %}
         <p>Get your personalized meal.</p>
         {% endif %}
@@ -66,5 +70,4 @@
     </div>
   </div>
 </div>
-
 {% endblock content %}

@@ -7,6 +7,7 @@ from apis import genai_fitness_plan, get_recipes
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import (LoginManager, UserMixin, login_user, logout_user, login_required, current_user)
+import requests
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_KEY")
@@ -109,6 +110,13 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-
+@app.route("/recipeurl", methods=["POST"])
+def recipeurl():
+    if request.method == "POST":
+        params = {"apiKey": os.getenv("SPOONACULAR_KEY")}
+        url = "https://api.spoonacular.com/recipes/"+str(request.form["recipe_id"])+"/information"
+        response = requests.get(url, params=params)
+        sourceUrl = response.json()["sourceUrl"]
+    return redirect(sourceUrl)
 if __name__ == '__main__':
         app.run(debug=True, host="0.0.0.0",port=5001)
