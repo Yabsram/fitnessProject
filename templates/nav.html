@@ -22,8 +22,12 @@
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/">Home</a></div>
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/workouts">Workouts</a></div>
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/recipes">Recipes</a></div>
+                    {% if not current_user.is_authenticated %}
                     <div class="nav-link-container"><a class="nav-link fs-5" href="/login">Login</a></div>
-                    <div class="nav-link-container"><a class="nav-link fs-5" href="/register">Register</a></div>               
+                    <div class="nav-link-container"><a class="nav-link fs-5" href="/register">Register</a></div>
+                    {% else %}
+                    <div class="nav-link-container"><a class="nav-link fs-5" href="/logout">Logout</a></div>
+                    {% endif %}              
                 </div>
             </div>
         </div>
