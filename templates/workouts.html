@@ -37,62 +37,59 @@
     <!-- Right Box: Output -->
     <div class="white-box">
       {% if workout_plan %}
+        <h3 class="mb-3">Your Plan</h3>
         <div class="formatted-plan p-4 bg-light border rounded shadow-sm">
-          {{ workout_plan | safe }}
-        </div>
-
-        {% if image_links %}
-          <div class="mt-4">
-            <h5>Exercise Images</h5>
-            <div class="row">
-              {% for name, img_url in image_links %}
-                <div class="col-md-4 text-center mb-3">
-                  <h6>{{ name.title() }}</h6>
-                  <img src="{{ img_url }}" alt="{{ name }}" class="img-fluid rounded">
-                </div>
-              {% endfor %}
-            </div>
+          <div class="formatted-plan p-4 bg-light border rounded shadow-sm">
+            {% set lower_plan = workout_plan.lower() %}
+            {% for ex, img in image_links %}
+              {% set ex_lower = ex.lower() %}
+              {% set image_tag = '<img src="' ~ img ~ '" alt="' ~ ex ~ '" width="250" class="mb-3">' %}
+              {% set search_term = '<strong>' ~ ex_lower ~ '</strong>' %}
+              {% set workout_plan = workout_plan | replace(search_term, search_term ~ image_tag) %}
+            {% endfor %}
+            {{ workout_plan | safe }}
           </div>
-        {% endif %}
+        </div>
       {% else %}
         <p class="text-muted">Enter your fitness info to generate a workout plan.</p>
       {% endif %}
+    </div>
 
-      <style>
-        .formatted-plan {
-          white-space: normal;
-          font-size: 1rem;
-          line-height: 1.6;
-        }
+  <style>
+    .formatted-plan {
+      white-space: normal;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
 
-        .formatted-plan h3 {
-          font-size: 1.5rem;
-          margin-top: 1.5rem;
-          font-weight: bold;
-          color: #333;
-        }
+    .formatted-plan h3 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
 
-        .formatted-plan strong {
-          font-size: 1.1rem;
-          font-weight: 600;
-        }
+    .formatted-plan strong {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
 
-        .formatted-plan a {
-          display: inline-block;
-          margin-top: 0.3rem;
-          color: #007bff;
-          text-decoration: underline;
-        }
+    .formatted-plan a {
+      display: inline-block;
+      margin-top: 0.3rem;
+      color: #007bff;
+      text-decoration: underline;
+    }
 
-        .formatted-plan ul {
-          padding-left: 1.5rem;
-          margin-bottom: 1rem;
-        }
+    .formatted-plan ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
 
-        .formatted-plan li {
-          margin-bottom: 1rem;
-        }
-      </style>
+    .formatted-plan li {
+      margin-bottom: 1rem;
+    }
+  </style>
     </div>
 
   </div>

@@ -93,7 +93,7 @@ def workouts():
         workout_plan = result["plan"]
         image_link = result["images"]
 
-    return render_template("workouts.html", workout_plan=workout_plan,image_links=image_link, status="Logout", page="/logout")
+    return render_template("workouts.html", workout_plan=workout_plan, status="Logout", page="/logout")
 
 @app.route('/recipes')
 @login_required

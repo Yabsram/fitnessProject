@@ -7,21 +7,87 @@
     <h1>WELCOME TO FIT4U</h1>
     <p> <strong>Your fitness. Your way.</strong></p>
   
-  <div class="header-row">
-    <h2>Workout Plan</h2>
-    <h2>Meal Suggestions</h2>
+    <div class="two-box-row">
+      <div class="white-box">
+        <h2>Workout Plan</h2>
+        <p>Personalized routines based on your fitness goals.</p>
+        <img src="{{ url_for('static', filename='images/girlcrunches.png') }}" 
+            alt="Image of a girl doing crunches." class="fitgirl">
+      </div>
+
+      <div class="white-box">
+        <h2>Meal Suggestions</h2>
+        <p>Recipes matched to your nutrient needs.</p>
+        <img src="{{ url_for('static', filename='images/healthyfood.png') }}" 
+            alt="Image of a salad." class="healthyfood">
+      </div>
+    </div>
+
+  <h1 class="getstarted">5 STEPS TO GET STARTED</h1>
+
+  <div class="steps-container">
+  <div class="step">
+    <div class="step-marker">
+      <div class="circle">1</div>
+      <div class="line"></div>
+    </div>
+    <div class="step-content">
+      <h3>Login or Create an Account</h3>
+      <img src="{{ url_for('static', filename='images/goal.png') }}" alt="Choose goal image">
+      <p>Start by registering for a free Fit4U account or logging into your existing one.</p>
+    </div>
   </div>
 
-  <div class="text-row">
-    <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-    <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
+  <div class="step">
+    <div class="step-marker">
+      <div class="circle">2</div>
+      <div class="line"></div>
+    </div>
+    <div class="step-content">
+      <h3>Choose Your Goal </h3>
+      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
+      <p>Enter a few basics on the workouts page like your height, weight, and fitness goals.</p>
+    </div>
   </div>
 
-  <!--
-  <div class="image-row">
-    <img src="{{ url_for('static', filename='images/homeimage.jpg') }}" alt="Image of sneakers, headphones, and dumbbells." class="side-image">
+    <div class="step">
+    <div class="step-marker">
+      <div class="circle">3</div>
+      <div class="line"></div>
+    </div>
+    <div class="step-content">
+      <h3>Get Workout Plan</h3>
+      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
+      <p>Get your AI-powered workout routine created just for you.</p>
+    </div>
   </div>
-  -->
+
+    <div class="step">
+    <div class="step-marker">
+      <div class="circle">4</div>
+      <div class="line"></div>
+    </div>
+    <div class="step-content">
+      <h3>Get Recipe Suggestions</h3>
+      <img src="{{ url_for('static', filename='images/workout.png') }}" alt="Workout plan image">
+      <p>Enter any dietary restrictions and available ingredients and Fit4U will provide you with recipes that support your workout goals</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-marker">
+      <div class="circle">5</div>
+      <!-- No line on the last one -->
+    </div>
+    <div class="step-content">
+      <h3>Stay Active and Focused</h3>
+      <img src="{{ url_for('static', filename='images/recipe.png') }}" alt="Recipe image">
+      <p>Access your workout plan or recipes at anytime, and stay consistent towards your goals.</p>
+    </div>
+  </div>
+</div>
+
+
 
   </div>
 
