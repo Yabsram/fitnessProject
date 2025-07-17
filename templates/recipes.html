@@ -11,7 +11,7 @@
       <form method="POST">
         <div class="form-group">
           <label for="height">Food type (e.g. pasta):</label>
-          <input type="text" class="form-control" name="food" required>
+          <input type="text" class="form-control" name="food" style="background-color: white !important;" required>
         </div>
         <div class="form-group mt-5">
           <label for="diet">Dietary Restrictions</label>
@@ -46,22 +46,22 @@
       {% if recipes.results %}
       <h4>Personalized Healthy Meal Suggestions</h4>
       <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for recipe in recipes.results %}
-              <div class="col">
-                <div class="card h-100">
-                  <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ recipe.title }}</h5>
-                  </div>
-                </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for recipe in recipes.results %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ recipe.title }}</h5>
               </div>
-            {% endfor %}
+            </div>
           </div>
+          {% endfor %}
+        </div>
         {% elif recipes and not recipes.results %}
         <p class="text-danger">Coud not generate any meal plans.</p>
         {% else %}
-          <p>Get your personalized meal.</p>
+        <p>Get your personalized meal.</p>
         {% endif %}
       </div>
     </div>
