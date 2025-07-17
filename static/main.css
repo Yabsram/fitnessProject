@@ -219,3 +219,9 @@ p{
   margin-top: 0.5rem;
   border-radius: 12px;
 }
+
+.form-check{
+  justify-content: left !important;
+  display: flex !important;
+  gap: 10px;
+}

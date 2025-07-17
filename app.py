@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationForm
 from werkzeug.security import generate_password_hash
-from apis import genai_fitness_plan
+from apis import genai_fitness_plan, get_recipes
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import (LoginManager, UserMixin, login_user, logout_user, login_required, current_user)
@@ -31,7 +31,7 @@ with app.app_context():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 @app.route('/')
 @app.route('/home')
@@ -92,10 +92,16 @@ def workouts():
 
     return render_template("workouts.html", workout_plan=workout_plan)
 
-@app.route('/recipes')
+@app.route('/recipes', methods=["GET", "POST"])
 @login_required
 def recipes():
-    return render_template("recipes.html")
+    diets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian"]
+    intolreances = ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"]
+    if request.method == "POST":
+        params = {"apiKey":"2d04e78ae12a4a59a1cea2f09f7f3c3e", "query" : request.form["food"] ,"diet" : request.form.get("diet", "Whole30"), "intolerances":request.form.getlist('intolerances')}
+        recipes = get_recipes("https://api.spoonacular.com/recipes/complexSearch", params)
+        return render_template("recipes.html", diets=diets, intolerances=intolreances, recipes=recipes)
+    return render_template("recipes.html", diets=diets, intolerances=intolreances)
 
 @app.route('/logout')
 @login_required
