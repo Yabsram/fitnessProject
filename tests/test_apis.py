@@ -18,7 +18,7 @@ class APITests(unittest.TestCase):
 
         mock_model.generate_content.return_value.text = "This is a fitness plan"
         result = genai_fitness_plan("25", "70", "gain muscle")
-        self.assertEqual(result, "This is a fitness plan")
+        self.assertEqual(result['plan'], "This is a fitness plan")
         mock_model.generate_content.assert_called_once()
 
     @patch('apis.requests.get') 
