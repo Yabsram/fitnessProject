@@ -39,7 +39,7 @@ class APITests(unittest.TestCase):
 
         mock_get.return_value = mock_response
 
-        params = {"apiKey":os.getenv("SPOONACULAR_KEY"), "query" : "pasta" ,"diet" : "Whole30", "intolerances": ["Egg"]}
+        params = {"apiKey":"SPOONACULAR_KEY", "query" : "pasta" ,"diet" : "Whole30", "intolerances": ["Egg"]}
         response = get_recipes("https://api.spoonacular.com/recipes/complexSearch", params=params)
         self.assertDictEqual(response, mock_response.json.return_value)
         mock_response.json.assert_called_once()

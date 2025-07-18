@@ -7,6 +7,7 @@ class UsersTests(unittest.TestCase):
 
     # executed prior to each test
     def setUp(self):
+        app.config['SECRET_KEY'] = 'test-secret'
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
         self.app = app.test_client()
         with app.app_context():

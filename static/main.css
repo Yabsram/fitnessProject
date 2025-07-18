@@ -90,7 +90,7 @@ p{
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    width: 48%;
+    width: 37%;
     margin: 1rem auto;
     text-align: center;
 }
@@ -289,7 +289,7 @@ p{
 .steps-text{
     display: flex;
     flex-direction: column;
-    justify-content:;
+    justify-content:flex-start;
 }
 
 .step-description {

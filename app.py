@@ -7,6 +7,8 @@ from apis import genai_fitness_plan, get_recipes
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import (LoginManager, UserMixin, login_user, logout_user, login_required, current_user)
+from flask_migrate import Migrate
+
 import requests
 
 app = Flask(__name__)
@@ -17,12 +19,14 @@ login_manager.login_view = 'login'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(20), unique=True, nullable=False)
   email = db.Column(db.String(120), unique=True, nullable=False)
   password = db.Column(db.String(60), nullable=False)
+
 
   def __repr__(self):
     return f"User('{self.username}', '{self.email}')"
@@ -80,7 +84,8 @@ def register():
 @app.route('/workouts', methods=['GET', 'POST'])
 @login_required
 def workouts():
-    workout_plan = None        
+    workout_plan = None
+    image_link = []        
     if request.method == "POST":
 
         height = request.form['height']
@@ -89,9 +94,11 @@ def workouts():
         age    = request.form.get('age')
         gender = request.form.get('gender')
 
-        workout_plan = genai_fitness_plan(height, weight, goal, age, gender)
+        result = genai_fitness_plan(height, weight, goal, age, gender)
+        workout_plan = result["plan"]
+        image_link = result["images"]
 
-    return render_template("workouts.html", workout_plan=workout_plan)
+    return render_template("workouts.html", workout_plan=workout_plan,image_link=image_link, status="Logout", page="/logout")
 
 @app.route('/recipes', methods=["GET", "POST"])
 @login_required
