@@ -123,7 +123,7 @@ def recipeurl():
         params = {"apiKey": os.getenv("SPOONACULAR_KEY")}
         url = "https://api.spoonacular.com/recipes/"+str(request.form["recipe_id"])+"/information"
         response = requests.get(url, params=params)
-        sourceUrl = response.json()["spoonacularSourceUrl"]
+        sourceUrl = response.json()["sourceUrl"]
     return redirect(sourceUrl)
 if __name__ == '__main__':
         app.run(debug=True, host="0.0.0.0",port=5001)
