@@ -18,6 +18,17 @@ p{
     text-align: start;
 }
 
+.creme-box h1{
+    font-weight: 500;
+}
+
+.creme-box p{
+    font-weight: 350;
+}
+
+.creme-box h2{
+    font-weight: 475;
+}
 
 .navbar{
     padding-top: 1rem !important;
