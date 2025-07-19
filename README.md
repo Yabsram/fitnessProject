@@ -1,5 +1,7 @@
 # 💪 Fit4U
 
+### [Click Here for Fit4U's Deployed Website !!](https://fit4u.pythonanywhere.com/)
+
 Fit4U is a personalized fitness and nutrition web app that helps users stay consistent with their health goals. Whether you want to lose weight, build muscle, or simply live healthier, Fit4U generates tailored weekly workout plans and recipe recommendations based on your body metrics and dietary needs.
 
 ### 🚀 Features
